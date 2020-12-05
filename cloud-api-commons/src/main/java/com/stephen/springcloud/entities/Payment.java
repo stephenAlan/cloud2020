@@ -22,4 +22,6 @@ public class Payment implements Serializable {
      */
     private String serial;
 
+    private String name;
+
 }
