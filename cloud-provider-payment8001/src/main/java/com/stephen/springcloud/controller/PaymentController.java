@@ -7,7 +7,12 @@ import com.stephen.springcloud.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ssc on 2020-04-19 18:55 .
@@ -23,6 +28,9 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @PostMapping("/create")
     public CommonResult create(@RequestBody Payment payment) {
@@ -49,22 +57,22 @@ public class PaymentController {
         }
     }
 
-    // @GetMapping("/discovery")
-    // public Object discovery() {
-    //     // 获取注册在Eureka上的所有服务
-    //     List<String> services = discoveryClient.getServices();
-    //     services.forEach(System.out::println);
-    //     // 获取某个服务下的所有实例
-    //     List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
-    //     instances.forEach(e -> {
-    //         log.info("serviceId:{}",e.getServiceId());
-    //         log.info("instanceId:{}",e.getInstanceId());
-    //         log.info("host:{}",e.getHost());
-    //         log.info("post:{}",e.getPort());
-    //         log.info("uri:{}",e.getUri());
-    //
-    //     });
-    //     return discoveryClient;
-    // }
+    @GetMapping("/discovery")
+    public Object discovery() {
+        // 获取注册在Eureka上的所有服务
+        List<String> services = discoveryClient.getServices();
+        services.forEach(System.out::println);
+        // 获取某个服务下的所有实例
+        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
+        instances.forEach(e -> {
+            log.info("serviceId:{}",e.getServiceId());
+            log.info("instanceId:{}",e.getInstanceId());
+            log.info("host:{}",e.getHost());
+            log.info("port:{}",e.getPort());
+            log.info("uri:{}",e.getUri());
+
+        });
+        return discoveryClient;
+    }
 
 }
