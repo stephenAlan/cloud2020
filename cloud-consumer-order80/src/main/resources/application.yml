@@ -10,8 +10,8 @@ eureka:
     register-with-eureka: true # 将自己注册进Eureka Server,默认是true
     fetch-registry: true  # 从Eureka Server拉取已有的注册信息，默认是true
     service-url:
-      defaultZone: http://localhost:7001/eureka/
-#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ # 注册到Eureka集群
+#      defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/ # 注册到Eureka集群
 #  instance:
 #    instance-id: order80 # Eureka client 名称
 #    prefer-ip-address: true # 访问路径可以显示IP地址
