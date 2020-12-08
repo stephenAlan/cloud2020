@@ -59,7 +59,7 @@ public class PaymentController {
                     int result = paymentService.create(payment);
                     log.info("插入payment结果： " + result);
                     log.info("from server: " + serverPort);
-                    int i = 1 / 0;
+                    // int i = 1 / 0; // 测试用
                     return 1;
                 } catch (Exception e) {
                     status.setRollbackOnly();
