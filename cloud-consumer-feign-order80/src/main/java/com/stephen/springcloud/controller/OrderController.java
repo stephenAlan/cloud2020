@@ -23,6 +23,11 @@ public class OrderController {
     @Resource
     private PaymentFeignService paymentFeignService;
 
+    @GetMapping("payment/timeout")
+    public CommonResult timeout() {
+        return paymentFeignService.timeout();
+    }
+
     @GetMapping("payment/get/{id}")
     public CommonResult<Payment> get(@PathVariable("id") Long id) {
         return paymentFeignService.get(id);

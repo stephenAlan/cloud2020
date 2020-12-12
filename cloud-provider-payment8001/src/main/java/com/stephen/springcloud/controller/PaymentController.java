@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by ssc on 2020-04-19 18:55 .
@@ -36,6 +37,13 @@ public class PaymentController {
     private DiscoveryClient discoveryClient;
     @Resource
     private TransactionTemplate transactionTemplate;
+
+    @GetMapping("timeout")
+    public CommonResult timeout() throws InterruptedException {
+        // feign默认1秒超时,睡眠3秒,测试超时
+        TimeUnit.SECONDS.sleep(3);
+        return new CommonResult(serverPort);
+    }
 
     @PostMapping("/create")
     public CommonResult create(@RequestBody Payment payment) {
