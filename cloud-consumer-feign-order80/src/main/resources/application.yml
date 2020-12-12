@@ -28,3 +28,7 @@ ribbon:
 #      default:
 #        connectTimeout: 5000
 #        readTimeout: 5000
+logging:
+  level:
+    # 设置feign日志监控的接口
+    com.stephen.springcloud.service.PaymentFeignService: debug
