@@ -1,7 +1,5 @@
 package com.stephen.springcloud.service;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +19,12 @@ public class PaymentService {
         return serverPort + Thread.currentThread().getName() + "\t" + "paymentOk";
     }
 
-    @HystrixCommand(fallbackMethod = "paymentTimeout_fallback",commandProperties = { // 3秒超时
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
-    })
+    // @HystrixCommand(fallbackMethod = "paymentTimeout_fallback",commandProperties = { // 3秒超时
+    //         @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
+    // })
     public String paymentTimeout() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(3);
+        // int i = 1 / 0;
         return serverPort + "\t"+ Thread.currentThread().getName() + "\t" + "paymentTimeout";
     }
 

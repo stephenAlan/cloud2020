@@ -1,5 +1,7 @@
 package com.stephen.springcloud.constroller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.stephen.springcloud.service.FeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +27,17 @@ public class ConsumerPaymentController {
         return feignService.paymentOk();
     }
 
+    @HystrixCommand(fallbackMethod = "paymentTimeout_fallback",commandProperties = { // 3秒超时
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "6000")
+    })
     @GetMapping("paymentTimeout")
-    public String paymentTimeout() {
-        return feignService.paymentTimeout();
+    public String paymentTimeout() throws InterruptedException {
+        // int i = 1 / 0;
+        return  feignService.paymentTimeout() ;
+    }
+
+    public String paymentTimeout_fallback() throws InterruptedException {
+        return "consumer 80 支付系统繁忙，请稍后再试";
     }
 
 }
