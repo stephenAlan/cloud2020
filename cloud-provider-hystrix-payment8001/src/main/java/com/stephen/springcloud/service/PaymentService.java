@@ -25,10 +25,10 @@ public class PaymentService {
     public String paymentTimeout() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
         // int i = 1 / 0;
-        return serverPort + "\t"+ Thread.currentThread().getName() + "\t" + "paymentTimeout";
+        return serverPort + "\t" + Thread.currentThread().getName() + "\t" + "paymentTimeout";
     }
 
-    public String paymentTimeout_fallback() throws InterruptedException {
+    public String paymentTimeout_fallback() throws InterruptedException{
         return serverPort+"\t" + Thread.currentThread().getName() + "\t" + "paymentTimeout_fallback";
     }
 

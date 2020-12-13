@@ -5,6 +5,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.stephen.springcloud.service.FeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +24,11 @@ public class ConsumerPaymentController {
     @Resource
     private FeignService feignService;
 
-    @GetMapping("paymentOk")
-    public String paymentOk() {
+    @GetMapping("paymentOk/{id}")
+    public String paymentOk(@PathVariable("id") Long id) {
+        if (id < 0) {
+            throw new ArithmeticException();
+        }
         return feignService.paymentOk();
     }
 
