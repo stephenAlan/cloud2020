@@ -34,7 +34,7 @@ public class ConsumerPaymentController {
     // })
     @GetMapping("paymentTimeout")
     public String paymentTimeout() throws InterruptedException {
-        int i = 1 / 0;
+        // int i = 1 / 0;
         return  feignService.paymentTimeout() ;
     }
 

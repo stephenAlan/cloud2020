@@ -23,7 +23,7 @@ public class PaymentService {
     //         @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
     // })
     public String paymentTimeout() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
         // int i = 1 / 0;
         return serverPort + "\t"+ Thread.currentThread().getName() + "\t" + "paymentTimeout";
     }
