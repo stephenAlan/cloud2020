@@ -93,6 +93,11 @@ public class PaymentController {
         }
     }
 
+    @GetMapping("/lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
+
     @GetMapping("/discovery")
     public Object discovery() {
         // 获取注册在Eureka上的所有服务
