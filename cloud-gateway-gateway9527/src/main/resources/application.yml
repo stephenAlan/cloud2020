@@ -17,6 +17,11 @@ spring:
           predicates:
             - Path=/pay/payment/lb/**
 
+        - id: payment_routh3  # 模拟config中的配置,更加直白,访问localhost:9527/finance会转发到http://news.baidu.com/finance
+          uri: http://news.baidu.com
+          predicates:
+            - Path=/finance
+
 eureka:
   instance:
     hostname: cloud-gateway-service
