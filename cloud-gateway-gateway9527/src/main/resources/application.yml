@@ -18,7 +18,7 @@ spring:
 #            - After=2021-01-07T17:43:19.812+08:00[Asia/Shanghai] # 在指定时间之后才能请求成功,比如提前上线的场景
 #            - Before=2021-01-07T17:43:19.812+08:00[Asia/Shanghai] # 在指定时间之前才能请求成功,比如提前上线的场景
 #            - Between=2021-01-07T17:43:19.812+08:00[Asia/Shanghai],2021-01-07T18:43:19.812+08:00[Asia/Shanghai]
-            - Cookie=username,zhangsan # 请求时必须带上cookie
+#            - Cookie=username,zhangsan # 请求时必须带上cookie
 
         - id: payment_routh2
 #          uri: http://localhost:8001
@@ -27,7 +27,10 @@ spring:
             - Path=/pay/payment/lb/**
 #            - Cookie=username,zhangsan
 #            - Header=X-Request-Id, \d+ # 带有header，并且值为正整数
-            - Host=**
+#            - Host=**.baidu.com
+            - Method=GET # 只允许GET请求访问,多个之前用逗号隔开
+#            - Query=username, \d+ # 必须带有参数username，并且值为非负整数
+#            - Query=username,age # 必须带有参数username
 
         - id: payment_routh3  # 模拟config中的配置,更加直白,访问localhost:9527/finance会转发到http://news.baidu.com/finance
           uri: http://news.baidu.com
