@@ -15,12 +15,19 @@ spring:
           uri: lb://cloud-payment-service # 动态匹配提供服务的路由地址,格式是lb:// 加上服务名称
           predicates:
             - Path=/pay/payment/get/**  # 断言,路径相匹配的进行路由,如果有上下文，要加上上下文
+#            - After=2021-01-07T17:43:19.812+08:00[Asia/Shanghai] # 在指定时间之后才能请求成功,比如提前上线的场景
+#            - Before=2021-01-07T17:43:19.812+08:00[Asia/Shanghai] # 在指定时间之前才能请求成功,比如提前上线的场景
+#            - Between=2021-01-07T17:43:19.812+08:00[Asia/Shanghai],2021-01-07T18:43:19.812+08:00[Asia/Shanghai]
+            - Cookie=username,zhangsan # 请求时必须带上cookie
 
         - id: payment_routh2
 #          uri: http://localhost:8001
           uri: lb://cloud-payment-service # 动态匹配提供服务的路由地址
           predicates:
             - Path=/pay/payment/lb/**
+#            - Cookie=username,zhangsan
+#            - Header=X-Request-Id, \d+ # 带有header，并且值为正整数
+            - Host=**
 
         - id: payment_routh3  # 模拟config中的配置,更加直白,访问localhost:9527/finance会转发到http://news.baidu.com/finance
           uri: http://news.baidu.com
