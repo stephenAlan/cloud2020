@@ -1,0 +1,22 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/stephenAlan/springcloud-config.git
+#          uri: git@github.com:stephenAlan/springcloud-config.git
+          search-paths:
+            - springcloud-config
+          username: stephenAlan@163.com
+          password: tianshi@2018
+        default-label: main # 新版本的github默认主分支改为main,不是master,所以要指定这个
+#      label: main # 这个是指定分支
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
