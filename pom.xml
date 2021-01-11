@@ -24,11 +24,14 @@
         <module>cloud-consumer-hystrix-dashboard9001</module>
         <module>cloud-gateway-gateway9527</module>
         <module>cloud-config-center-3344</module>
+        <module>cloud-config-client-3355</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <mysql.version>5.1.44</mysql.version>
@@ -70,7 +73,7 @@
                 <version>${mysql.version}</version>
             </dependency>
 
-            <!--spring-boot 2.2.2-->
+            <!--spring-boot 2.2.2,固定大部分依赖版本,相当于spring-boot-parent-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -106,6 +109,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.2.RELEASE</version> <!--spring-boot-dependencies中未包含maven插件的版本,需要手动指定-->
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
