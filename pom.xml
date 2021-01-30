@@ -26,6 +26,8 @@
         <module>cloud-config-center-3344</module>
         <module>seata-order-service</module>
         <module>seata-account-service</module>
+        <module>cloudalibaba-provider-payment9001</module>
+        <module>cloudalibaba-consumer-order83</module>
     </modules>
     <packaging>pom</packaging>
 
